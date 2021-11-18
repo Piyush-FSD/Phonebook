@@ -2,18 +2,18 @@ import React, { useState } from "react";
 import styled from "styled-components";
 
 export const ContactForm = () => {
-    // form onSubmit
-    const handleAddContact = (e) => {
-        e.preventDefault();
-        console.log('pressed')
-    };
-
     // empty string will be updated w user data
     const [contactInfo, setContactInfo] = useState({
         firstName: "",
         lastName: "",
         phoneNum: ""
     });
+
+    // form onSubmit
+    const handleAddContact = (e) => {
+        e.preventDefault();
+        console.log('pressed')
+    };
 
     // track input value
     const handleInput = (e) => {
