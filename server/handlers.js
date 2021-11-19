@@ -5,19 +5,18 @@ require("dotenv").config();
 const { MONGO_URI } = process.env;
 const { v4: uuidv4 } = require("uuid");
 
-const options = { useNewUrlParser: true, useUnifiedTopology: true }
+const options = { useNewUrlParser: true, useUnifiedTopology: true };
 
 const addNewContact = async (req, res) => {
     try {
-        const client = await new MongoClient(MONGO_URI, options);
+        const client = new MongoClient(MONGO_URI, options);
         await client.connect;
         const db = client.db('Phonebook');
-        // console.log(db, ' db connection')
 
-        // const { firstName, lastName, phoneNum } = req.body;
+        const { firstName, lastName, phoneNum } = req.body;
 
         // // data to send to mongoDb
-        const contactInfo = { _id: uuidv4(), ...req.body };
+        const contactInfo = { _id: uuidv4(), firstName, lastName, phoneNum };
 
         const contactForm = await db.collection("contacts").insertOne(contactInfo);
         console.log(contactForm, ' contact form')
@@ -33,7 +32,7 @@ const addNewContact = async (req, res) => {
         // }
 
         // if (contactInfo) {
-        res.status(200).json({ status: 200, data: contactForm, message: "Successfully added new contact" })
+        // res.status(200).json({ status: 200, data: contactForm, message: "Successfully added new contact" })
         // } else {
         //     res.status(400).json({ status: 400, data: contactForm, message: "Error adding new contact" })
         // }

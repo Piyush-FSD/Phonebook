@@ -18,12 +18,11 @@ export const Homepage = () => {
                 <AddBtnSearchContainer>
                     <AddNewBtn onClick={handleNewContact}>+</AddNewBtn>
                 </AddBtnSearchContainer>
-                {showForm ? <ContactForm />
-                    : (
-                        <SearchBarContainer>
-                            <SearchBar />
-                        </SearchBarContainer>
-                    )
+                {showForm ? <ContactForm /> : (
+                    <SearchBarContainer>
+                        <SearchBar />
+                    </SearchBarContainer>
+                )
                 }
             </Container>
         </>
