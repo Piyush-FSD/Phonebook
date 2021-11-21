@@ -9,7 +9,7 @@ express()
     .use(morgan("tiny"))
     .use(express.json())
 
-    .post("/contact", addNewContact)
+    .post("/contact/add", addNewContact)
 
     .get("*", (req, res) => {
         res.status(404).json({

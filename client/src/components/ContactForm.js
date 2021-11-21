@@ -9,12 +9,6 @@ export const ContactForm = () => {
         phoneNum: ""
     });
 
-    // form onSubmit
-    const handleAddContact = (e) => {
-        e.preventDefault();
-        console.log('pressed')
-    };
-
     // track input value
     const handleInput = (e) => {
         const name = e.target.name;
@@ -26,27 +20,53 @@ export const ContactForm = () => {
         setContactInfo({ ...contactInfo, [name]: value })
     };
 
+    // form onSubmit
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        const response = await fetch('/contact/add', {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(contactInfo)
+        })
+        const data = await response.json();
+        if (data.status === 200) {
+            setContactInfo({
+                firstName: "",
+                lastName: "",
+                phoneNum: "",
+            });
+        }
+    };
+
     return (
         <>
-            <Form onSubmit={handleAddContact}>
+            <Form onSubmit={handleSubmit}>
                 <Input
                     type="text"
                     name="firstName"
                     placeholder="First Name"
                     value={contactInfo.firstName}
-                    onChange={handleInput} />
+                    onChange={handleInput}>
+                </Input>
                 <Input
                     type="text"
                     name="lastName"
                     placeholder="Last Name"
                     value={contactInfo.lastName}
-                    onChange={handleInput} />
+                    onChange={handleInput}>
+                </Input>
+
                 <Input
                     type="text"
                     name="phoneNum"
                     placeholder="Phone Number"
                     value={contactInfo.phoneNum}
-                    onChange={handleInput} />
+                    onChange={handleInput}>
+                </Input>
+
                 <AddBtn>Add Contact</AddBtn>
             </Form>
         </>
