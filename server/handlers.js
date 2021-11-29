@@ -1,47 +1,31 @@
-"use strict";
+// "use strict";
 
-const { MongoClient } = require("mongodb");
-require("dotenv").config();
-const { MONGO_URI } = process.env;
-const { v4: uuidv4 } = require("uuid");
+// const { MongoClient } = require("mongodb");
+// require("dotenv").config();
+// const { MONGO_URI } = process.env;
+// const { v4: uuidv4 } = require("uuid");
+// const { BadRequestError } = require("./Errors/customErrors");
+// const { MongoDbConnection, getConnection } = require("./MongoDbConnection");
 
-const options = { useNewUrlParser: true, useUnifiedTopology: true };
+// const getContacts = async () => {
+//     try {
+//         const client = new MongoClient(MONGO_URI, options);
+//         await client.connect();
+//         const db = client.db("Phonebook");
 
-const addNewContact = async (req, res) => {
-    try {
-        const client = new MongoClient(MONGO_URI, options);
-        await client.connect();
-        const db = client.db('Phonebook');
+//         const contacts = await db.collection("contacts").find().toArray();
+//         client.close();
 
-        const { firstName, lastName, phoneNum } = req.body;
+//         if (contacts.length > 0) {
+//             return res.status(200).json({ status: 200, data: contacts, message: "Successfully retreived contacts!" });
+//         }
+//         return res.status(404).json({ status: 404, data: contacts, message: "Error retreiving contacts" });
 
-        // // data to send to mongoDb
-        const contactInfo = { _id: uuidv4(), firstName, lastName, phoneNum };
+//     } catch (error) {
+//         console.log(error.stack);
+//     }
+// }
 
-        const contactForm = await db.collection("contacts").insertOne(contactInfo);
-        console.log(contactForm, ' contact form')
-
-        if (
-            !req.body ||
-            !firstName ||
-            !lastName ||
-            !phoneNum
-        ) {
-            res.status(400).json({ status: 400, message: "Error. Missing Data" })
-            return
-        }
-
-        if (contactInfo) {
-            res.status(200).json({ status: 200, data: contactForm, message: "Successfully added new contact" })
-        } else {
-            res.status(400).json({ status: 400, data: contactForm, message: "Error adding new contact" })
-        }
-
-    } catch (e) {
-        console.log(e.stack)
-    }
-};
-
-module.exports = {
-    addNewContact
-};
+// module.exports = {
+//     getContacts
+// };
