@@ -1,11 +1,9 @@
-
-
 export class HttpException extends Error {
     constructor(message) {
         super(message);
     }
-
 }
+
 export class UnprocessableError extends HttpException {
 
     constructor(message) {

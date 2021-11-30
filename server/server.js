@@ -2,10 +2,10 @@
 
 import express from 'express';
 import morgan from 'morgan'
-import { addNewContact } from './contacts/contacts.controller.js';
+import { addNewContact } from './CSR/addContacts/addContacts.controller.js';
 import { HttpException } from './Errors/customErrors.js';
 import { connect } from './MongoDbConnection.js';
-
+import { getContacts } from './handlers.js'
 
 const app = express()
 
@@ -14,14 +14,14 @@ app.use(morgan("tiny"))
 app.use(express.json())
 
 app.post("/contact/add", addNewContact)
-// app.get("/contact", getContacts)
+app.get("/contact", getContacts)
 
 app.get("*", (req, res) => {
     res.status(404).json({
         status: 404,
         message: "This is obviously not what you are looking for.",
     });
-})
+});
 
 app.use(function (err, req, res, next) {
 
@@ -36,14 +36,10 @@ app.use(function (err, req, res, next) {
     return res.status(500).json({
         message: err.message,
     })
-})
-
-//
+});
 
 const startServer = async () => {
-
     try {
-
         const mongoDbConnection = await connect();
 
         if (mongoDbConnection) {
@@ -56,7 +52,7 @@ const startServer = async () => {
     } catch (error) {
         console.error(error + 'startServer function')
     }
-}
+};
 
 
 startServer();

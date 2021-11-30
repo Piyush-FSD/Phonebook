@@ -13,15 +13,16 @@ import dotenv from 'dotenv'
 dotenv.config();
 
 const { MONGO_URI } = process.env;
+const options = {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+};
 
 let mongodbConnection;
 
 export const connect = async () => {
     try {
-        const client = new MongoClient(MONGO_URI, {
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
-        });
+        const client = new MongoClient(MONGO_URI, options);
 
         mongodbConnection = await client.connect();
         return mongodbConnection;

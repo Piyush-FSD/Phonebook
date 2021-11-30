@@ -13,6 +13,7 @@ export const SearchBar = () => {
                     placeholder="Search Contacts"
                     onChange={(e) => setValue(e.target.value)}
                 />
+                <ClearBtn onClick={() => setValue("")}>Clear</ClearBtn>
             </Container>
         </>
     )
@@ -27,4 +28,13 @@ const SearchInput = styled.input`
 width: 75%;
 height: 30px;
 border-radius: 10px;
+`;
+
+const ClearBtn = styled.button`
+height: 35px;
+width: 70px;
+margin-left: 5px;
+border-radius: 8px;
+color: white;
+background-color: darkslategrey;
 `;
