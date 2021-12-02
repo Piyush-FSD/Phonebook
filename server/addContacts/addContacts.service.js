@@ -1,4 +1,4 @@
-import { UnprocessableError } from '../../Errors/customErrors';
+import { UnprocessableError } from '../Errors/customErrors';
 import * as contactsRepository from './addContacts.repository';
 
 export const addNewContact = async (contactInformation) => {

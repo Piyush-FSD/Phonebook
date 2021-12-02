@@ -1,7 +1,12 @@
-export const getContacts = async (req, res) => {
+import { BadRequestError } from "../Errors/customErrors";
+import * as getContactService from './getContacts.service';
+
+export const getContact = async (req, res, next) => {
     try {
 
-    } catch (error) {
-        console.log(error.stack)
+
+
+    } catch (err) {
+        next(err)
     }
 }
