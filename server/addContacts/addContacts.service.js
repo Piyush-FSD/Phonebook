@@ -10,5 +10,5 @@ export const addNewContact = async (contactInformation) => {
     }
 
     return result;
-}
+};
 

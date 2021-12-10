@@ -2,10 +2,11 @@
 
 import express from 'express';
 import morgan from 'morgan'
-import { addNewContact } from './CSR/addContacts/addContacts.controller.js';
+import { addNewContact } from './addContacts/addContacts.controller'
+import { getContact } from './getContacts/getContacts.controller';
 import { HttpException } from './Errors/customErrors.js';
 import { connect } from './MongoDbConnection.js';
-import { getContacts } from './handlers.js'
+// import { getContacts } from './handlers.js'
 
 const app = express()
 
@@ -14,7 +15,7 @@ app.use(morgan("tiny"))
 app.use(express.json())
 
 app.post("/contact/add", addNewContact)
-app.get("/contact", getContacts)
+app.get("/contact", getContact)
 
 app.get("*", (req, res) => {
     res.status(404).json({
