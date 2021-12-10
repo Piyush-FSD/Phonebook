@@ -30,7 +30,7 @@ export const connect = async () => {
     } catch (error) {
         throw new Error("Issue connecting to db")
     }
-}
+};
 
 export const getConnection = () => {
 
@@ -39,10 +39,10 @@ export const getConnection = () => {
         return mongodbConnection;
     }
     throw new Error('No connection for mongoDbConnection')
-}
+};
 
 export const close = async () => {
     await mongodbConnection.close();
-}
+};
 
 
