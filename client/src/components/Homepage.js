@@ -43,7 +43,7 @@ const Wrapper = styled.div`
 const Container = styled.div`
     width: 600px;
     display: inline-block;
-    height: 500px;
+    height: 100%;
     border: 3px solid grey;
     border-radius: 10px;
 `;
