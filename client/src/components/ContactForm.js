@@ -98,6 +98,7 @@ width: 100%;
 
 const AddBtn = styled.button`
 margin-top: 8%;
+margin-bottom: 8%;
 border-radius: 8px;
 height: 35px;
 width: 110px;

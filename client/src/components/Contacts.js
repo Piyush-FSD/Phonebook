@@ -34,7 +34,7 @@ export const Contacts = () => {
                         return (
                             <ContactInfo key={info.id}>
                                 <Contact>
-                                    <Name>{info.firstName}{" "}{info.lastName}{" "}<EditBtn>⚙️</EditBtn></Name>
+                                    <Name>{info.firstName}{" "}{info.lastName}{" "}<EditBtn>edit</EditBtn></Name>
                                     <PhoneNum>{info.phoneNum}</PhoneNum>
                                     <Email>{info.email}</Email>
                                 </Contact>
@@ -80,7 +80,7 @@ const Email = styled.span`
 `;
 
 const EditBtn = styled.button`
-width: 30px;
+width: 42px;
 height: 25x;
 border-radius: 8px;
 color: white;
